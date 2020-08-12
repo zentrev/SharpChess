@@ -29,6 +29,7 @@ namespace SharpChess.Model
     #region Using
 
     using System;
+    using System.Collections.Generic;
     using System.Text;
 
     #endregion
@@ -48,8 +49,43 @@ namespace SharpChess.Model
         {
             get
             {
-                return "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+                if (Game.UseRandomOpeningMoves)
+                {
+                    return GetModed96Fen();
+                }
+                else
+                {
+                    return "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+                }
             }
+        }
+
+        #endregion
+
+        #region Mode 96
+
+        static private string GetModed96Fen()
+        {
+            string fenReturn = "";
+            Random rand = new Random();
+            List<char> peices = new List<char>() { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' };
+            while(peices.Count != 0)
+            {
+                int selection = rand.Next(0, peices.Count);
+                fenReturn += peices[selection];
+                peices.RemoveAt(selection);
+            }
+            fenReturn += "/pppppppp/8/8/8/8/PPPPPPPP/";
+
+            peices = new List<char>() { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' };
+            while (peices.Count != 0)
+            {
+                int selection = rand.Next(0, peices.Count);
+                fenReturn += peices[selection];
+                peices.RemoveAt(selection);
+            }
+            fenReturn += " w KQkq - 0 1";
+            return fenReturn;
         }
 
         #endregion

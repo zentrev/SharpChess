@@ -74,6 +74,7 @@ namespace SharpChess
         /// </summary>
         private CheckBox chkUseRandomOpeningMoves;
 
+
         /// <summary>
         /// The grp clock.
         /// </summary>
@@ -168,6 +169,8 @@ namespace SharpChess
         /// The trk level.
         /// </summary>
         private TrackBar trkLevel;
+
+
 
         #endregion
 
@@ -497,6 +500,7 @@ namespace SharpChess
             this.chkUseRandomOpeningMoves.Size = new System.Drawing.Size(352, 16);
             this.chkUseRandomOpeningMoves.TabIndex = 12;
             this.chkUseRandomOpeningMoves.Text = "&Use Random Opening Moves (Opening Book)";
+
             // 
             // label5
             // 

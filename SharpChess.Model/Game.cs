@@ -31,6 +31,7 @@ namespace SharpChess.Model
     #region Using
 
     using System;
+    using System.Diagnostics;
     using System.Globalization;
     using System.Reflection;
     using System.Xml;
@@ -204,6 +205,8 @@ namespace SharpChess.Model
         #endregion
 
         #region Public Properties
+
+        public static bool Mode96 { get; set; } 
 
         /// <summary>
         ///   Gets the available MegaBytes of free computer memory.
@@ -471,7 +474,7 @@ namespace SharpChess.Model
         /// <summary>
         ///   Gets or sets a value indicating whether to use random opening moves.
         /// </summary>
-        public static bool UseRandomOpeningMoves { get; set; }
+        public static bool UseRandomOpeningMoves { get; set; } = false;
 
         #endregion
 
@@ -559,8 +562,9 @@ namespace SharpChess.Model
             SuspendPondering();
 
             NewInternal(fenString);
-            SaveBackup();
-            SendBoardPositionChangeEvent();
+            //SaveBackup();
+            try { SendBoardPositionChangeEvent(); }
+            catch (Exception e) { }
             ResumePondering();
         }
 
